@@ -2,7 +2,7 @@
 
 Repo: https://github.com/sspringer82/jsdays-sheepnrun
 
-Erstelle ein `<canvas>`-Element der Größe **1024\*768**.
+Erstelle ein `<canvas>`-Element der Größe **1024\*512**.
 
 Nutze einen der beiden Hintergründe aus dem Ordner `assets` und zeichne ihn in voller Größe in das Canvas Element.
 
