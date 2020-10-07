@@ -20,7 +20,7 @@ export default class Player {
     this.currentState = Player.idle;
 
     this.x = 0;
-    this.y = 0;
+    this.y = 202;
     this.sourceHeight = 464;
     this.sourceWidth = 325;
     this.height = this.sourceHeight / 3;
@@ -39,8 +39,6 @@ export default class Player {
   }
 
   init() {
-    const images = Object.entries(this.images);
-
     this.images[Player.idle].image.src = 'assets/Black_Sheep_Idle.png';
     this.images[Player.run].image.src = 'assets/Black_Sheep_Run.png';
     this.images[Player.jump].image.src = 'assets/Black_Sheep_Jump.png';
@@ -49,27 +47,19 @@ export default class Player {
 
     return Promise.all([
       new Promise((resolve) =>
-        this.images[Player.idle].image.addEventListener('load', () =>
-          resolve(),
-        ),
+        this.images[Player.idle].image.addEventListener('load', resolve),
       ),
       new Promise((resolve) =>
-        this.images[Player.run].image.addEventListener('load', () => resolve()),
+        this.images[Player.run].image.addEventListener('load', resolve),
       ),
       new Promise((resolve) =>
-        this.images[Player.jump].image.addEventListener('load', () =>
-          resolve(),
-        ),
+        this.images[Player.jump].image.addEventListener('load', resolve),
       ),
       new Promise((resolve) =>
-        this.audios[Player.jump].addEventListener('canplaythrough', () =>
-          resolve(),
-        ),
+        this.audios[Player.jump].addEventListener('canplaythrough', resolve),
       ),
       new Promise((resolve) =>
-        this.audios[Player.die].addEventListener('canplaythrough', () =>
-          resolve(),
-        ),
+        this.audios[Player.die].addEventListener('canplaythrough', resolve),
       ),
     ]);
   }

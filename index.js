@@ -3,7 +3,7 @@ import PlatformCollection from './js/platformCollection.js';
 import Loop from './js/loop.js';
 import Player from './js/player.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   const canvas = document.getElementById('sheep-and-run');
   const context = canvas.getContext('2d');
 
@@ -16,21 +16,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const player = new Player(context);
   const playerPromise = player.init();
 
-  Promise.all([backbroundPromise, platformPromise, playerPromise]).then(() => {
-    const loop = new Loop(context, player, background, platformCollection);
+  await Promise.all([backbroundPromise, platformPromise, playerPromise]);
 
-    document.addEventListener('keydown', (e) => {
-      if (e.code === 'Enter') {
-        // stop start moving
-        loop.toggleMoving();
-      } else if (e.code === 'Space') {
-        // jump
-        player.jump();
-      }
-    });
+  const loop = new Loop(context, player, background, platformCollection);
 
-    player.y = 202;
-    requestAnimationFrame(loop.step.bind(loop));
-    // requestAnimationFrame((ts) => loop.step(ts));
+  document.addEventListener('keydown', (e) => {
+    if (e.code === 'Enter') {
+      // stop start moving
+      loop.toggleMoving();
+    } else if (e.code === 'Space') {
+      // jump
+      player.jump();
+    }
   });
+
+  requestAnimationFrame(loop.step.bind(loop));
+  // requestAnimationFrame((ts) => loop.step(ts));
 });
