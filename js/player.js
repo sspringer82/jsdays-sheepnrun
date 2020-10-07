@@ -1,4 +1,4 @@
-class Player {
+export default class Player {
   static idle = 'idle';
   static run = 'run';
   static jump = 'jump';

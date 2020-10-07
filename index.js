@@ -1,3 +1,8 @@
+import Background from './js/background.js';
+import PlatformCollection from './js/platformCollection.js';
+import Loop from './js/loop.js';
+import Player from './js/player.js';
+
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('sheep-and-run');
   const context = canvas.getContext('2d');
