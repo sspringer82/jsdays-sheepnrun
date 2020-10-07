@@ -2,7 +2,7 @@ class PlatformCollection {
   constructor(context) {
     this.context = context;
     this.platforms = [];
-    this.updateEvery = 35;
+    this.updateEvery = 15;
     this.lastUpdate = 0;
     this.y = 282;
     this.count = 0;
@@ -40,7 +40,7 @@ class PlatformCollection {
   update(timestamp) {
     if (this.shouldUpdate(timestamp)) {
       this.platforms.forEach((platform, index) => {
-        if (platform.x + platform.width < 0) {
+        if (platform.x + platform.width < -platform.width) {
           const p = this.platforms.splice(index, 1)[0];
           const lastPlatform = this.platforms[this.platforms.length - 1];
           p.updatePosition(lastPlatform.x + lastPlatform.width, p.y);
@@ -49,6 +49,7 @@ class PlatformCollection {
           platform.updatePosition(platform.x - 5, platform.y);
         }
       });
+      this.lastUpdate = timestamp;
     }
   }
 

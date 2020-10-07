@@ -18,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.code === 'Enter') {
         // stop start moving
         loop.toggleMoving();
+      } else if (e.code === 'Space') {
+        // jump
+        player.jump();
       }
     });
 
