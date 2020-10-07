@@ -8,6 +8,13 @@ class Loop {
   }
 
   toggleMoving() {
+    if (
+      (this.isMoving && this.player.currentState === Player.jump) ||
+      this.player.isDead
+    ) {
+      return;
+    }
+
     this.isMoving = !this.isMoving;
     this.player.setIsMoving(this.isMoving);
   }
@@ -19,6 +26,22 @@ class Loop {
     if (this.isMoving) {
       this.platformCollection.update(timestamp);
     }
+    if (!this.player.isDead && this.isPlayerDead()) {
+      this.toggleMoving();
+      this.player.die();
+      alert('💀 YOU JUST DIED! 💀');
+    }
+  }
+
+  isPlayerDead() {
+    const isPlayerInGap = this.platformCollection.platforms
+      .filter((platform) => platform instanceof Gap)
+      .some(
+        (gap) =>
+          gap.x <= this.player.x &&
+          gap.x + gap.width >= this.player.x + this.player.width,
+      );
+    return isPlayerInGap && this.player.currentState !== Player.jump;
   }
 
   render() {
