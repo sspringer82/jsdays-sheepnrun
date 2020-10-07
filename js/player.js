@@ -27,6 +27,7 @@ class Player {
 
   die() {
     this.isDead = true;
+    this.updateEvery = 30;
   }
 
   init() {
@@ -94,6 +95,11 @@ class Player {
       ) {
         this.currentState = Player.run;
         this.y = this.y + 55;
+      }
+
+      if (this.isDead) {
+        this.y = this.y * 1.0981;
+        this.x = this.x + 3;
       }
 
       this.lastUpdate = timestamp;

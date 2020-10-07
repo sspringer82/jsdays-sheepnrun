@@ -29,7 +29,6 @@ class Loop {
     if (!this.player.isDead && this.isPlayerDead()) {
       this.toggleMoving();
       this.player.die();
-      alert('💀 YOU JUST DIED! 💀');
     }
   }
 
