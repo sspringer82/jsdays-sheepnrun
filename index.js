@@ -1,4 +1,4 @@
-import Background from './js/background.js';
+import { Background } from './js/background.js';
 import PlatformCollection from './js/platformCollection.js';
 import Loop from './js/loop.js';
 import Player from './js/player.js';

@@ -1,4 +1,4 @@
-export default class Background {
+export class Background {
   constructor(context) {
     this.context = context;
 
