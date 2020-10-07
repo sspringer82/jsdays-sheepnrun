@@ -2,6 +2,7 @@ class Player {
   static idle = 'idle';
   static run = 'run';
   static jump = 'jump';
+  static die = 'die';
 
   constructor(context) {
     this.context = context;
@@ -9,6 +10,11 @@ class Player {
       [Player.idle]: { image: new Image(), steps: 4 },
       [Player.run]: { image: new Image(), steps: 6 },
       [Player.jump]: { image: new Image(), steps: 8 },
+    };
+
+    this.audios = {
+      [Player.jump]: new Audio(),
+      [Player.die]: new Audio(),
     };
 
     this.currentState = Player.idle;
@@ -26,6 +32,8 @@ class Player {
   }
 
   die() {
+    this.audios[Player.die].currentTime = 0;
+    this.audios[Player.die].play();
     this.isDead = true;
     this.updateEvery = 30;
   }
@@ -36,6 +44,8 @@ class Player {
     this.images[Player.idle].image.src = 'assets/Black_Sheep_Idle.png';
     this.images[Player.run].image.src = 'assets/Black_Sheep_Run.png';
     this.images[Player.jump].image.src = 'assets/Black_Sheep_Jump.png';
+    this.audios[Player.jump].src = 'audio/jump3.wav';
+    this.audios[Player.die].src = 'audio/drop.wav';
 
     return Promise.all([
       new Promise((resolve) =>
@@ -51,11 +61,23 @@ class Player {
           resolve(),
         ),
       ),
+      new Promise((resolve) =>
+        this.audios[Player.jump].addEventListener('canplaythrough', () =>
+          resolve(),
+        ),
+      ),
+      new Promise((resolve) =>
+        this.audios[Player.die].addEventListener('canplaythrough', () =>
+          resolve(),
+        ),
+      ),
     ]);
   }
 
   jump() {
     if (this.currentState === Player.run) {
+      this.audios[Player.jump].currentTime = 0;
+      this.audios[Player.jump].play();
       this.currentState = Player.jump;
       this.updateEvery = 100;
       this.y = this.y - 55;
