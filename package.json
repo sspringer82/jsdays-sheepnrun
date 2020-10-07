@@ -1,0 +1,20 @@
+{
+  "name": "sheepnrun",
+  "version": "1.0.0",
+  "description": "## Links",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sspringer82/jsdays-sheepnrun.git"
+  },
+  "keywords": [],
+  "author": "Sebastian Springer<sebastian.springer@maibornwolff.de>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sspringer82/jsdays-sheepnrun/issues"
+  },
+  "homepage": "https://github.com/sspringer82/jsdays-sheepnrun#readme"
+}
