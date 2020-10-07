@@ -9,6 +9,7 @@ class Loop {
 
   toggleMoving() {
     this.isMoving = !this.isMoving;
+    this.player.setIsMoving(this.isMoving);
   }
 
   update(timestamp) {
