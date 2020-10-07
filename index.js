@@ -30,10 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   Promise.all([backbroundPromise, ...platformPromises, playerPromise]).then(
     () => {
-      background.render(canvas.width, canvas.height);
-      platforms.forEach((platform) => platform.render());
+      const loop = new Loop(context, player, background, platforms);
+
       player.y = 202;
-      player.render();
+      requestAnimationFrame(loop.step.bind(loop));
+      // requestAnimationFrame((ts) => loop.step(ts));
     },
   );
 });
