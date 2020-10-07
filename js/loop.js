@@ -9,6 +9,7 @@ class Loop {
   update(timestamp) {
     // update all the things
     // update player animation state
+    this.player.update(timestamp);
   }
 
   render() {
