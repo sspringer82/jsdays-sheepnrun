@@ -8,6 +8,10 @@ Nutze einen der beiden Hintergründe aus dem Ordner `assets` und zeichne ihn in 
 
 Zum Zeichnen wird `context.drawImage(image, x, y, width, height)` benötigt.
 
+Laden des Bildes: `img.src = 'bildDatei.jpg';`
+
+Load-Event: `img.addEventListener('load', () => {})`
+
 **Hinweis:** Der Ursprung des Canvas liegt oben links!
 
 ## Ergebnis
