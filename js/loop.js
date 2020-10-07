@@ -1,15 +1,16 @@
 class Loop {
-  constructor(context, player, background, platforms) {
+  constructor(context, player, background, platformCollection) {
     this.context = context;
     this.player = player;
     this.background = background;
-    this.platforms = platforms;
+    this.platformCollection = platformCollection;
   }
 
   update(timestamp) {
     // update all the things
     // update player animation state
     this.player.update(timestamp);
+    this.platformCollection.update(timestamp);
   }
 
   render() {
@@ -20,7 +21,7 @@ class Loop {
       this.context.canvas.width,
       this.context.canvas.height,
     );
-    this.platforms.forEach((platform) => platform.render());
+    this.platformCollection.render();
     this.player.render();
   }
 

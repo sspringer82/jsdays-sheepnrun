@@ -5,36 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
   const background = new Background(context);
   const backbroundPromise = background.init('assets/background1.png');
 
-  const platforms = [
-    new Platform(context),
-    new Platform(context),
-    new Gap(context),
-    new Platform(context),
-    new Platform(context),
-    new Platform(context),
-    new Gap(context),
-    new Platform(context),
-    new Gap(context),
-  ];
-
-  const platformPromises = platforms
-    .map((platform, index) => {
-      platform.x = index * platform.width;
-      platform.y = 282;
-      return platform;
-    })
-    .map((platform) => platform.init());
+  const platformCollection = new PlatformCollection(context);
+  const platformPromise = platformCollection.init();
 
   const player = new Player(context);
   const playerPromise = player.init();
 
-  Promise.all([backbroundPromise, ...platformPromises, playerPromise]).then(
-    () => {
-      const loop = new Loop(context, player, background, platforms);
+  Promise.all([backbroundPromise, platformPromise, playerPromise]).then(() => {
+    const loop = new Loop(context, player, background, platformCollection);
 
-      player.y = 202;
-      requestAnimationFrame(loop.step.bind(loop));
-      // requestAnimationFrame((ts) => loop.step(ts));
-    },
-  );
+    player.y = 202;
+    requestAnimationFrame(loop.step.bind(loop));
+    // requestAnimationFrame((ts) => loop.step(ts));
+  });
 });
