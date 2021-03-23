@@ -132,5 +132,6 @@ export default class Player {
       this.width,
       this.height,
     );
+    this.context.strokeRect(this.x, this.y, this.width, this.height);
   }
 }
